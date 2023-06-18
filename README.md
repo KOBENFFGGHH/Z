@@ -1,10 +1,16 @@
+local args = {
+    [1] = "KOBEN HUB",
+    [2] = "All"
+}
+
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
 local CombatFramework = require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework)
 local Camera = require(game.ReplicatedStorage.Util.CameraShaker)
 Camera:Stop()
 coroutine.wrap(function()
     game:GetService("RunService").Stepped:Connect(function()
         if getupvalues(CombatFramework)[2]['activeController'].timeToNextAttack then
-            getupvalues(CombatFramework)[2]['activeController'].timeToNextAttack = 10
+            getupvalues(CombatFramework)[2]['activeController'].timeToNextAttack = 4
             getupvalues(CombatFramework)[2]['activeController'].hitboxMagnitude = 100
             getupvalues(CombatFramework)[2]['activeController']:attack()
         end
